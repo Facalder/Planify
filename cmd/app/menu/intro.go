@@ -6,9 +6,7 @@ import (
 
 func IntroScreen() {
 	component.HeaderBigText("planify")
-
-	component.Description("Welcome to Planify the Task Management App - Made with love for you!")
-
+	component.Header("Welcome to Planify!, the Task Management App - Made with love for you!")
 	component.Spinner(3, "Waiting init for 3 seconds", func() {
 		InitialMenu()
 	})

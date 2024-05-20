@@ -1,32 +1,29 @@
 package menu
 
 import (
-	"fmt"
 	"github.com/Facalder/Planify/pkg"
 	"github.com/Facalder/Planify/pkg/component"
-	"github.com/Facalder/Planify/pkg/theme"
 	"github.com/pterm/pterm"
 )
 
 func Exit() {
+	component.HeaderBigText("Thanks!")
+	component.Header("Have a nice day, Be Careful!")
+
 	for {
-		component.HeaderBigText("thank you so much")
+		pterm.DefaultSection.Println("Others Available Commands?")
+		pterm.DefaultBasicText.Println("(1) - Reload Project")
 
-		component.Description("Have a nice day, and be careful!")
-
-		pterm.NewRGBStyle(theme.TextForegroundRGB).AddOptions(pterm.Bold).Println(
-			"Available Command: ")
-		pterm.Println(pterm.Red("(1) - Reload Project"))
-
-		fmt.Println("")
-		component.Description("----------------- END ----------------------")
-
-		fmt.Scan(&pkg.ChooseMenu)
+		choose, _ := pterm.DefaultInteractiveTextInput.Show("Choose Command")
+		pkg.ChooseMenu = choose
 
 		switch pkg.ChooseMenu {
-		case 1:
-			IntroScreen()
-			pkg.Clear()
+		case "1":
+			component.Spinner(5, "Reloading Project, Please Wait a Second...", func() {
+				IntroScreen()
+			})
+		default:
+			pterm.DefaultLogger.Error("Menu Option Is Not Valid!, Please Fill Command Correctly!")
 		}
 	}
 }
