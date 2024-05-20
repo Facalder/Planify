@@ -1,4 +1,4 @@
-package data
+package models
 
 import (
 	"github.com/Facalder/Planify/pkg"
