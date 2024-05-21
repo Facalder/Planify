@@ -1,9 +1,12 @@
 package models
 
-import "time"
+import (
+	"github.com/Facalder/Planify/pkg"
+	"time"
+)
 
 type AdminModel struct {
-	Id        int64
+	Id        int
 	FullName  string
 	ShortName string
 	UserName  string
@@ -12,3 +15,10 @@ type AdminModel struct {
 	UpdateAt  time.Time
 	DeletedAt time.Time
 }
+
+type TabAdmin [pkg.NMAX]AdminModel
+
+var (
+	NAdmin int = 0
+	Admins TabAdmin
+)

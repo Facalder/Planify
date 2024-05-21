@@ -4,7 +4,7 @@ go 1.21.2
 
 require (
 	github.com/pterm/pterm v0.12.79
-	golang.org/x/exp v0.0.0-20220909182711-5c715a9e8561
+	github.com/savioxavier/termlink v1.3.0
 )
 
 require (

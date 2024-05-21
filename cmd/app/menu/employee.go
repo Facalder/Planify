@@ -1,6 +1,8 @@
 package menu
 
 import (
+	"github.com/Facalder/Planify/internal/controller"
+	"github.com/Facalder/Planify/models"
 	"github.com/Facalder/Planify/pkg"
 	"github.com/Facalder/Planify/pkg/component"
 	"github.com/pterm/pterm"
@@ -25,32 +27,36 @@ func Employee() {
 
 		switch pkg.ChooseMenu {
 		case "1":
-			//if controller.LoginAdmin() {
-			//	component.Spinner(5, "Validating Your Data, Please Wait a Second...", func() {
-			//		MenuAdmin()
-			//	})
-			//} else {
-			//	component.Spinner(5, "Validating Your Data, Please Wait a Second...", func() {
-			//		pterm.Error.Println("Username and password doesn't match, please try again!")
-			//	})
-			//}
+			if controller.LoginEmployee(models.Employees, models.NEmployee) {
+				component.Spinner(5, "Validating Your Data, Please Wait a Second...", func() {
+					MenuEmployee()
+				})
+			} else {
+				component.Spinner(5, "Validating Your Data, Please Wait a Second...", func() {
+					pterm.Error.Println("Username and password doesn't match, please try again!")
+				})
+			}
 		case "2":
-			//controller.RegisterAdmin(func() {
-			//	component.Spinner(5, "Create and Save Your Data...", func() {
-			//		MenuAdmin()
-			//	})
-			//})
+			controller.RegisterEmployee(&models.Employees, &models.NEmployee, func() {
+				component.Spinner(5, "Create and Save Your Data...", func() {
+					MenuEmployee()
+				})
+			})
 		case "3":
-			InitialMenu()
+			component.Spinner(pkg.Loading, "Leaving Employee...", func() {
+				InitialMenu()
+			})
 		case "4":
-			Exit()
+			component.Spinner(pkg.ExitProgram, "Exiting Program, Please Wait a Second...", func() {
+				Exit()
+			})
 		default:
 			pterm.Error.Println("Menu Option Is Not Valid!, Please Fill Command Correctly!")
 		}
 	}
 }
 
-func MenuManager() {
+func MenuEmployee() {
 	component.Header("Welcome to Employee Dashboard, Choose Command to use Functionality")
 
 	for {
@@ -66,17 +72,17 @@ func MenuManager() {
 
 		switch pkg.ChooseMenu {
 		case "1":
-			component.Spinner(1, "Loading...", func() {
-
+			component.Spinner(pkg.Loading, "Loading...", func() {
+				ManageTaskEmployee()
 			})
 
 		case "2":
-			component.Spinner(1, "Leaving Admin Menu....", func() {
-				Admin()
+			component.Spinner(pkg.Loading, "Leaving Employee Menu....", func() {
+				Employee()
 			})
 
 		case "3":
-			component.Spinner(5, "Exiting Program, Please Wait a Second...", func() {
+			component.Spinner(pkg.ExitProgram, "Exiting Program, Please Wait a Second...", func() {
 				Exit()
 			})
 

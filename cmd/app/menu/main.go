@@ -25,21 +25,21 @@ func InitialMenu() {
 
 		switch pkg.ChooseMenu {
 		case "1":
-			component.Spinner(1, "Entering Admin...", func() {
+			component.Spinner(pkg.Loading, "Entering Admin...", func() {
 				Admin()
 			})
 		case "2":
-			component.Spinner(1, "Entering Manager...", func() {
+			component.Spinner(pkg.Loading, "Entering Manager...", func() {
 				Manager()
 			})
 
 		case "3":
-			component.Spinner(1, "Entering Employee...", func() {
+			component.Spinner(pkg.Loading, "Entering Employee...", func() {
 				Employee()
 			})
 
 		case "4":
-			component.Spinner(5, "Exiting Program, Please Wait a Second...", func() {
+			component.Spinner(pkg.ExitProgram, "Exiting Program, Please Wait a Second...", func() {
 				Exit()
 			})
 
